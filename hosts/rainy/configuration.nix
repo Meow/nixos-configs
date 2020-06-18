@@ -11,7 +11,6 @@
     ];
 
   nixpkgs.config.allowUnfree = true;
-
   boot.supportedFilesystems = [ "ntfs" ];
 
 # fileSystems."/mnt/f" = {
@@ -19,6 +18,14 @@
 #   fsType = "ntfs";
 #   options = [ "rw" "uid=1001" ];
 # };
+
+  boot.initrd.luks.devices = {
+    root = {
+      device = "/dev/disk/by-uuid/77636ca8-422b-4435-b5a9-ad85b0957f4f";
+      preLVM = true;
+      allowDiscards = true;
+    };
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
