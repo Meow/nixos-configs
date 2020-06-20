@@ -6,8 +6,11 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
+      /home/luna/nixos-configs/users
+      /home/luna/nixos-configs/hosts/common/core.nix
+      /home/luna/nixos-configs/hosts/common/desktop.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -114,13 +117,6 @@
   networking.firewall.checkReversePath = false;
 
   services.xserver.videoDrivers = [ "nvidia" ];
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.luna = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "libvirtd" "audio" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
