@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      /home/luna/code/nixos-configs/hosts/common/sudo.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
