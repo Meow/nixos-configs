@@ -11,6 +11,7 @@
       /home/luna/nixos-configs/users
       /home/luna/nixos-configs/hosts/common/core.nix
       /home/luna/nixos-configs/hosts/common/desktop.nix
+      /home/luna/nixos-configs/hosts/common/sudo.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
