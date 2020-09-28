@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
+      /home/luna/code/nixos-configs/hosts/common/sway.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -124,7 +125,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.luna = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "libvirtd" "audio" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "libvirtd" "audio" "sway" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
 
