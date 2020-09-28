@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
       /home/luna/code/nixos-configs/hosts/common/sway.nix
+      /home/luna/code/nixos-configs/hosts/trixie/sway.nix
     ];
 
   nixpkgs.config.allowUnfree = true;

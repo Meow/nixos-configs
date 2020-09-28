@@ -20,8 +20,8 @@ set $term exec alacritty -e fish
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
-set $keyboard_id "4152:5639:SteelSeries_SteelSeries_Apex_M500_Gaming_Keyboard"
-set $mouse_id "4152:4961:La-VIEW_Technology_SteelSeries_Sensei"
+# Include machine-specific things
+include /etc/sway/machine_specific
 
 ### Output configuration
 #
