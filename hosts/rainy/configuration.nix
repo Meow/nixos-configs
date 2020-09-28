@@ -12,6 +12,8 @@
       /home/luna/nixos-configs/hosts/common/core.nix
       /home/luna/nixos-configs/hosts/common/desktop.nix
       /home/luna/nixos-configs/hosts/common/sudo.nix
+      /home/luna/nixos-configs/hosts/common/sway.nix
+      /home/luna/nixos-configs/hosts/rainy/sway.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -113,9 +115,14 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
+  # Docker
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   networking.firewall.checkReversePath = false;
+
+  # Virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -128,4 +135,3 @@
   system.stateVersion = "20.03"; # Did you read the comment?
 
 }
-

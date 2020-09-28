@@ -13,6 +13,7 @@
       alacritty # tty
       grim # screenshots
       wl-clipboard # wayland clipboard utils
+      dmenu # menu thing
     ];
   };
 
