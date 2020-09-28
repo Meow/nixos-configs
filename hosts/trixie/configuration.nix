@@ -98,9 +98,28 @@
   hardware.opengl.driSupport32Bit = true;
   hardware.steam-hardware.enable = true;
 
+  # Docker
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   networking.firewall.checkReversePath = false;
+
+  # Vbox
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql;
+    enableTCPIP = true;
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all all trust
+      host all all ::1/128 trust
+      host all all 127.0.0.1/8 trust
+    '';
+    initialScript = pkgs.writeText "backend-initScript" ''
+      CREATE USER luna WITH SUPERUSER;
+    '';
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.luna = {
@@ -108,6 +127,8 @@
     extraGroups = [ "wheel" "docker" "libvirtd" "audio" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
+
+  users.extraGroups.vboxusers.members = [ "luna" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -118,4 +139,3 @@
   system.stateVersion = "20.03"; # Did you read the comment?
 
 }
-
