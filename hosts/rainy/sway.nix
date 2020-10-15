@@ -9,6 +9,8 @@
         output HDMI-A-1 resolution 1920x1080 position 0,0 scale 1
         output DP-2 resolution 1920x1080@240Hz position 1920,0 scale 1
         output DP-3 resolution 3840x2160 position 3840,0 scale 2
+        
+        input $mouse_id pointer_accel -0.5
       '';
     };
   };
