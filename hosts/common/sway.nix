@@ -7,6 +7,7 @@
       swayidle
       xwayland # for legacy apps
       waybar # status bar
+      font-awesome # waybar icons
       mako # notification daemon
       kanshi # autorandr
       swaybg # wallpapers
