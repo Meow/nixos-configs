@@ -187,6 +187,10 @@ include /etc/sway/machine_specific
     # Move focus to the parent container
     bindsym $mod+a focus parent
 
+#
+# Screenshots:
+#
+
     # capture all screens to clipboard
     bindsym Shift+Print exec grim - | wl-copy
 
@@ -226,6 +230,14 @@ mode "resize" {
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
+
+    # Manage gaps
+    bindsym F1 gaps inner all plus 10
+    bindsym Shift+F1 gaps inner all minus 10
+    bindsym Alt+F1 gaps inner all set 0
+    bindsym F2 gaps outer all plus 10
+    bindsym Shift+F2 gaps outer all minus 10
+    bindsym Alt+F2 gaps outer all set 0
 
     # Return to default mode
     bindsym Return mode "default"
