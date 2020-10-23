@@ -124,7 +124,7 @@
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nouveau" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
