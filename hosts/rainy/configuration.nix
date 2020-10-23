@@ -122,7 +122,8 @@
 
   # Virtualbox
   virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  # Disable extensions for now.
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
 
   services.xserver.videoDrivers = [ "nouveau" ];
 
