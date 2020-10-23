@@ -10,9 +10,10 @@
       mako # notification daemon
       kanshi # autorandr
       swaybg # wallpapers
-      alacritty # tty
+      kitty # tty
       grim # screenshots
       wl-clipboard # wayland clipboard utils
+      slurp # for selecting screen area
       dmenu # menu thing
       jq # JSON stuff
     ];
