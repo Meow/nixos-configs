@@ -8,12 +8,12 @@
   imports =
     [
       ./hardware-configuration.nix
-      /home/luna/nixos-configs/users
-      /home/luna/nixos-configs/hosts/common/core.nix
-      /home/luna/nixos-configs/hosts/common/desktop.nix
-      /home/luna/nixos-configs/hosts/common/sudo.nix
-      /home/luna/nixos-configs/hosts/common/sway.nix
-      /home/luna/nixos-configs/hosts/rainy/sway.nix
+      /home/luna/code/nixos-configs/users
+      /home/luna/code/nixos-configs/hosts/common/core.nix
+      /home/luna/code/nixos-configs/hosts/common/desktop.nix
+      /home/luna/code/nixos-configs/hosts/common/sudo.nix
+      /home/luna/code/nixos-configs/hosts/common/sway.nix
+      /home/luna/code/nixos-configs/hosts/rainy/sway.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
