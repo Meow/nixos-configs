@@ -5,6 +5,5 @@
     discord
     chromium
     steam
-    vscode
   ];
 }

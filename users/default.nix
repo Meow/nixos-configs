@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # imports = [ <home-manager/nixos> ];
+  imports = [ <home-manager/nixos> ];
 
   users.users.luna = {
     isNormalUser = true;
@@ -11,5 +11,5 @@
 
   users.extraGroups.vboxusers.members = [ "luna" ];
 
-  # home-manager.users.luna = (import ./luna/default.nix);
+  home-manager.users.luna = (import ./luna/default.nix);
 }

@@ -12,6 +12,7 @@
       /home/luna/code/nixos-configs/hosts/common/core.nix
       /home/luna/code/nixos-configs/hosts/common/desktop.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
+      /home/luna/code/nixos-configs/hosts/common/wacom.nix
       /home/luna/code/nixos-configs/hosts/common/sway.nix
       /home/luna/code/nixos-configs/hosts/rainy/sway.nix
     ];

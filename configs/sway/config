@@ -85,6 +85,15 @@ include /etc/sway/machine_specific
     bindsym Shift+Alt+9 exec swaymsg input $keyboard_id xkb_switch_layout 8
     bindsym Shift+Alt+0 exec swaymsg input $keyboard_id xkb_switch_layout 9
 
+#
+# Tablet inputs shite:
+#
+
+    seat wacom_seat {
+        attach "1386:892:Wacom_Cintiq_Pro_24_Pen"
+        hide_cursor 100
+    }
+
 ### Key bindings
 #
 # Basics:
