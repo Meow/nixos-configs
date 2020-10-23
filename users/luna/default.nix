@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./waybar
     ./fish.nix
     ./vscode.nix
   ];

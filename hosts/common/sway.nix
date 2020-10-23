@@ -9,7 +9,7 @@
       waybar # status bar
       font-awesome # waybar icons
       mako # notification daemon
-      kanshi # autorandr
+      # kanshi # autorandr
       swaybg # wallpapers
       kitty # tty
       grim # screenshots
