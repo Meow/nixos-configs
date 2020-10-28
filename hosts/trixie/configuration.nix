@@ -16,6 +16,8 @@
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
+  boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
+
   boot.initrd.luks.devices = {
     root = {
       device = "/dev/disk/by-uuid/d5d74556-eed2-4bb4-b2b0-86af482ca88d";
@@ -107,7 +109,7 @@
 
   # Vbox
   virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
 
   services.postgresql = {
     enable = true;
