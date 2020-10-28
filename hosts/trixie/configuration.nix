@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      /home/luna/code/nixos-configs/users
+      /home/luna/code/nixos-configs/hosts/common/core.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
       /home/luna/code/nixos-configs/hosts/common/sway.nix
       /home/luna/code/nixos-configs/hosts/trixie/sway.nix
@@ -124,15 +126,6 @@
       CREATE USER luna WITH SUPERUSER;
     '';
   };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.luna = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "libvirtd" "audio" "sway" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
-  };
-
-  users.extraGroups.vboxusers.members = [ "luna" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
