@@ -11,7 +11,7 @@
   programs.home-manager.enable = true;
 
   nixpkgs.config = {
-    allowBroken = true;
+    allowBroken = false;
     allowUnfree = true;
   };
 }

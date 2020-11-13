@@ -93,6 +93,7 @@ include /etc/sway/machine_specific
 #
 # Basics:
 #
+
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -123,9 +124,11 @@ include /etc/sway/machine_specific
 
     # Turn on screen
     bindsym $mod+Shift+O exec swaymsg "output * dpms on"
+
 #
 # Moving around:
 #
+
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -147,9 +150,11 @@ include /etc/sway/machine_specific
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
 #
 # Workspaces:
 #
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -174,9 +179,11 @@ include /etc/sway/machine_specific
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
 #
 # Layout stuff:
 #
+
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
@@ -216,6 +223,7 @@ include /etc/sway/machine_specific
 #
 # Scratchpad:
 #
+
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
@@ -225,9 +233,11 @@ include /etc/sway/machine_specific
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
 #
 # Resizing containers:
 #
+
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -262,6 +272,7 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+
 bar {
     position bottom
 
