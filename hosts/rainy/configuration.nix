@@ -122,7 +122,7 @@
   networking.firewall.checkReversePath = false;
 
   # Virtualbox
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
   # Disable extensions for now.
   # virtualisation.virtualbox.host.enableExtensionPack = true;
 
