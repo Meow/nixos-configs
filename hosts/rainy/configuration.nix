@@ -14,6 +14,7 @@
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
       /home/luna/code/nixos-configs/hosts/common/wacom.nix
       /home/luna/code/nixos-configs/hosts/common/sway.nix
+      /home/luna/code/nixos-configs/hosts/common/wine.nix
       /home/luna/code/nixos-configs/hosts/rainy/sway.nix
     ];
 
