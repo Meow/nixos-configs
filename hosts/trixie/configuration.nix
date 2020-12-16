@@ -111,7 +111,7 @@
   networking.firewall.checkReversePath = false;
 
   # Vbox
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true;
 
   services.postgresql = {
