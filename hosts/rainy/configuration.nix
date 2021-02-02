@@ -3,8 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
-{
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
   imports =
     [
       ./hardware-configuration.nix
@@ -12,14 +13,17 @@
       /home/luna/code/nixos-configs/hosts/common/core.nix
       /home/luna/code/nixos-configs/hosts/common/desktop.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
-      /home/luna/code/nixos-configs/hosts/common/wacom.nix
-      /home/luna/code/nixos-configs/hosts/common/sway.nix
+      #/home/luna/code/nixos-configs/hosts/common/wacom.nix
       /home/luna/code/nixos-configs/hosts/common/wine.nix
-      /home/luna/code/nixos-configs/hosts/rainy/sway.nix
+      /home/luna/code/nixos-configs/hosts/common/gnome.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
+
+  boot.kernelPackages = unstable.linuxPackages_5_10;
+
+  boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
 # fileSystems."/mnt/f" = {
 #   device = "/dev/disk/by-label/penis";
@@ -47,7 +51,7 @@
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.interfaces.enp9s0.useDHCP = true;
+# networking.interfaces.enp9s0.useDHCP = true;
   networking.interfaces.wlp7s0.useDHCP = true;
 
   # Configure network proxy if necessary
@@ -114,8 +118,8 @@
   services.xserver.libinput.enable = true;
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.sddm.enable = false;
+  services.xserver.desktopManager.plasma5.enable = false;
 
   # Docker
   virtualisation.docker.enable = true;
@@ -127,7 +131,7 @@
   # Disable extensions for now.
   # virtualisation.virtualbox.host.enableExtensionPack = true;
 
-  services.xserver.videoDrivers = [ "nouveau" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
