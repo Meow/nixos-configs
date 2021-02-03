@@ -13,9 +13,10 @@ in {
       /home/luna/code/nixos-configs/hosts/common/core.nix
       /home/luna/code/nixos-configs/hosts/common/desktop.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
-      #/home/luna/code/nixos-configs/hosts/common/wacom.nix
+      /home/luna/code/nixos-configs/hosts/common/wacom.nix
       /home/luna/code/nixos-configs/hosts/common/wine.nix
       /home/luna/code/nixos-configs/hosts/common/gnome.nix
+      /home/luna/code/nixos-configs/hosts/common/postgresql.nix
     ];
 
   nixpkgs.config.allowUnfree = true;

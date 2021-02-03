@@ -14,5 +14,5 @@
   services.xserver.modules = [ pkgs.xf86_input_wacom ];
   services.xserver.wacom.enable = true;
 
-  environment.etc."X11/xorg.conf.d/70-wacom.conf".source = ../../configs/wacom/70-wacom.conf;
+  #environment.etc."X11/xorg.conf.d/70-wacom.conf".source = ../../configs/wacom/70-wacom.conf;
 }
