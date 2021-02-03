@@ -8,6 +8,7 @@
     ./git.nix
     ./gnome.nix
     ./kitty.nix
+    ./krita.nix
   ];
 
   programs.home-manager.enable = true;
