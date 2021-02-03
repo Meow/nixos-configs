@@ -6,7 +6,8 @@
     ./fish.nix
     ./vscode.nix
     ./git.nix
-    # ./gnome.nix
+    ./gnome.nix
+    ./kitty.nix
   ];
 
   programs.home-manager.enable = true;

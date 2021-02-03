@@ -3,8 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
-{
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -12,12 +13,15 @@
       /home/luna/code/nixos-configs/hosts/common/core.nix
       /home/luna/code/nixos-configs/hosts/common/desktop.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
+      /home/luna/code/nixos-configs/hosts/common/mail.nix
       /home/luna/code/nixos-configs/hosts/common/sway.nix
       /home/luna/code/nixos-configs/hosts/trixie/sway.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
+
+  boot.kernelPackages = unstable.linuxPackages_5_10;
 
   boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
