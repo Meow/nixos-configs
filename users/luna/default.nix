@@ -9,6 +9,7 @@
     ./gnome.nix
     ./kitty.nix
     ./krita.nix
+    ./blender.nix
   ];
 
   programs.home-manager.enable = true;
