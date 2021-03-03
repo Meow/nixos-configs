@@ -12,8 +12,7 @@
       /home/luna/code/nixos-configs/hosts/common/desktop.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
       /home/luna/code/nixos-configs/hosts/common/mail.nix
-      /home/luna/code/nixos-configs/hosts/common/sway.nix
-      /home/luna/code/nixos-configs/hosts/trixie/sway.nix
+      /home/luna/code/nixos-configs/hosts/common/gnome.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -106,8 +105,8 @@
   # services.xserver.libinput.enable = true;
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.sddm.enable = false;
+  services.xserver.desktopManager.plasma5.enable = false;
 
   hardware.opengl.driSupport32Bit = true;
   hardware.steam-hardware.enable = true;
