@@ -12,6 +12,12 @@
     ./blender.nix
   ];
 
+  home.packages = with pkgs; [
+    htop
+    tmux
+    neofetch
+  ];
+
   programs.home-manager.enable = true;
 
   nixpkgs.config = {
