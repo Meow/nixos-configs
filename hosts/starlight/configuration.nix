@@ -66,6 +66,7 @@
   environment.systemPackages = with pkgs; [
     wget
     nano
+    docker-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
