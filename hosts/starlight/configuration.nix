@@ -38,6 +38,11 @@
   networking.hostName = "starlight"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  networking.extraHosts = ''
+    192.168.200.200 ldap.hc.schule
+    192.168.200.200 docs.hc.schule
+  '';
+
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 

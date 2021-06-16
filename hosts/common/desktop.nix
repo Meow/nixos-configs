@@ -7,5 +7,7 @@
     slack
     chromium
     steam
+    thunderbird
+    teams
   ];
 }
