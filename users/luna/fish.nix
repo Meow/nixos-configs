@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  programs.fish.enable = true;
+  # programs.fish.enable = true;
 
   home.file = {
     ".config/fish/functions/fish_greeting.fish".text = ''

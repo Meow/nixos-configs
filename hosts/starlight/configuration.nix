@@ -88,7 +88,7 @@
 
   # Enable the GNOME 3 Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;  
+  services.xserver.desktopManager.gnome.enable = true;  
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

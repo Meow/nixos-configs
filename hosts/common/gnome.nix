@@ -5,10 +5,10 @@
     xserver = {
       displayManager.gdm.enable = true;
       displayManager.gdm.wayland = true;
-      desktopManager.gnome3.enable = true;
+      desktopManager.gnome.enable = true;
     };
 
-    dbus.packages = [ pkgs.gnome3.dconf ];
-    udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+    dbus.packages = [ pkgs.gnome.dconf ];
+    udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
   };
 }
