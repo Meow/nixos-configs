@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  unstable = import <nixos-unstable> {};
 in {
   imports =
     [
@@ -22,9 +22,29 @@ in {
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = unstable.linuxPackages_5_10;
+  # unstable.linuxPackages.nvidiaPackages.stable
 
-  boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
+  # nixpkgs.overlays = [
+  #   (self: super:
+  #   {
+  #     linuxPackages_5_10 = super.linuxPackages_5_10.extend (selfLinux: superLinux:
+  #     {
+  #       nvidia_x11 = unstable.linuxPackages.nvidia_x11;
+  #     });
+  #   })
+  # ];
+
+  boot.kernelPackages = pkgs.linuxPackages_5_10;
+
+  boot.kernelParams = [ "amdgpu.dc=0" "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
+
+  boot.kernelPatches = [{
+    name = "big-navi";
+    patch = null;
+    extraConfig = ''
+      DRM_AMD_DC_DCN3_0 y
+    '';
+  }];
 
 # fileSystems."/mnt/f" = {
 #   device = "/dev/disk/by-label/penis";
@@ -40,6 +60,8 @@ in {
     };
   };
 
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -51,9 +73,9 @@ in {
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp0s31f6.useDHCP = true;
-# networking.interfaces.enp9s0.useDHCP = true;
-  networking.interfaces.wlp7s0.useDHCP = true;
+  networking.interfaces.enp7s0.useDHCP = true;
+  #networking.interfaces.enp9s0.useDHCP = true;
+  #networking.interfaces.wlp7s0.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -107,8 +129,14 @@ in {
   hardware.bluetooth.enable = true;
 
   # Steam is a pancake
+  hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.steam-hardware.enable = true;
+
+  # AMD stuff
+  hardware.opengl.package = unstable.mesa.drivers;
+  hardware.opengl.package32 = unstable.pkgsi686Linux.mesa.drivers;
+  hardware.opengl.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -132,7 +160,7 @@ in {
   # Disable extensions for now.
   # virtualisation.virtualbox.host.enableExtensionPack = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
