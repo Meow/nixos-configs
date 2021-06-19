@@ -2,10 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> {};
-in {
+{ config, pkgs, ... }: {
   imports =
     [
       ./hardware-configuration.nix
@@ -22,35 +19,9 @@ in {
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  # unstable.linuxPackages.nvidiaPackages.stable
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # nixpkgs.overlays = [
-  #   (self: super:
-  #   {
-  #     linuxPackages_5_10 = super.linuxPackages_5_10.extend (selfLinux: superLinux:
-  #     {
-  #       nvidia_x11 = unstable.linuxPackages.nvidia_x11;
-  #     });
-  #   })
-  # ];
-
-  boot.kernelPackages = pkgs.linuxPackages_5_10;
-
-  boot.kernelParams = [ "amdgpu.dc=0" "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
-
-  boot.kernelPatches = [{
-    name = "big-navi";
-    patch = null;
-    extraConfig = ''
-      DRM_AMD_DC_DCN3_0 y
-    '';
-  }];
-
-# fileSystems."/mnt/f" = {
-#   device = "/dev/disk/by-label/penis";
-#   fsType = "ntfs";
-#   options = [ "rw" "uid=1001" ];
-# };
+  boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
   boot.initrd.luks.devices = {
     root = {
@@ -134,9 +105,7 @@ in {
   hardware.steam-hardware.enable = true;
 
   # AMD stuff
-  hardware.opengl.package = unstable.mesa.drivers;
-  hardware.opengl.package32 = unstable.pkgsi686Linux.mesa.drivers;
-  hardware.opengl.enable = true;
+  hardware.enableRedistributableFirmware = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
