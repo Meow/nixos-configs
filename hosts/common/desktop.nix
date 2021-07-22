@@ -2,12 +2,9 @@
 
 {
   environment.systemPackages = with pkgs; [
-    discord
-    tdesktop
-    slack
     chromium
     steam
-    thunderbird
-    teams
   ];
+
+  xdg.mime.enable = true;
 }

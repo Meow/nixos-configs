@@ -13,6 +13,12 @@
   ];
 
   home.packages = with pkgs; [
+    discord
+    tdesktop
+    slack
+    thunderbird
+    teams
+    protonmail-bridge
     htop
     tmux
     neofetch
