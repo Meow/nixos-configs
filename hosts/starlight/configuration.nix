@@ -14,12 +14,14 @@
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
       /home/luna/code/nixos-configs/hosts/common/mail.nix
       /home/luna/code/nixos-configs/hosts/common/gnome.nix
+
+      <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
     ];
 
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_10;
+  boot.kernelPackages = pkgs.linuxPackages_5_15;
 
   boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
@@ -93,10 +95,16 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [
+    gutenprint
+    gutenprintBin
     brlaser
     brgenml1lpr
     brgenml1cupswrapper
   ];
+
+  # Scanner support.
+  hardware.sane.enable = true;
+  users.users.luna.extraGroups = [ "scanner" "lp" ];
 
   # Configure keymap in X11
   services.xserver.layout = "us";
