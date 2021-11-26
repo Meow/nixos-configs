@@ -19,9 +19,9 @@
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_5_15;
 
-  boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
+  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
   boot.initrd.luks.devices = {
     root = {
@@ -61,12 +61,14 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
+  time.hardwareClockInLocalTime = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
     nano
+    docker-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

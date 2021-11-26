@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 
+let
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/master)
+    { config = config.nixpkgs.config; };
+in
 {
   imports = [
     ./waybar
@@ -13,7 +18,7 @@
   ];
 
   home.packages = with pkgs; [
-    discord
+    unstable.discord
     tdesktop
     slack
     thunderbird
