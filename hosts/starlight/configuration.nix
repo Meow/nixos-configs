@@ -2,26 +2,27 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
-{
- imports =
+{ config, pkgs, ... }: {
+  imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      /home/luna/code/nixos-configs/hosts/common/options.nix
+
+      ./git.nix
+
       /home/luna/code/nixos-configs/users
       /home/luna/code/nixos-configs/hosts/common/core.nix
       /home/luna/code/nixos-configs/hosts/common/desktop.nix
       /home/luna/code/nixos-configs/hosts/common/sudo.nix
       /home/luna/code/nixos-configs/hosts/common/mail.nix
       /home/luna/code/nixos-configs/hosts/common/gnome.nix
-
       <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
     ];
 
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_15;
+  boot.kernelPackages = pkgs.linuxPackages_5_16;
 
   boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
