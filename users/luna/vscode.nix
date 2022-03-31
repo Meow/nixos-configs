@@ -10,7 +10,8 @@
           "explorer.confirmDelete": false,
           "editor.tabSize": 2,
           "files.trimFinalNewlines": true,
-          "files.insertFinalNewline": true
+          "files.insertFinalNewline": true,
+          "editor.unicodeHighlight.nonBasicASCII": false
       }
     '';
   };

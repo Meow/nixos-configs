@@ -19,7 +19,7 @@ in
 
   home.packages = with pkgs; [
     unstable.discord
-    unstable.tdesktop
+    tdesktop
     slack
     thunderbird
     teams

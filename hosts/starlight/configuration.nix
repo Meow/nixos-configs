@@ -9,6 +9,7 @@
       /home/luna/code/nixos-configs/hosts/common/options.nix
 
       ./git.nix
+      ./samba.nix
 
       /home/luna/code/nixos-configs/users
       /home/luna/code/nixos-configs/hosts/common/core.nix
