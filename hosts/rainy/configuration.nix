@@ -6,6 +6,10 @@
   imports =
     [
       ./hardware-configuration.nix
+      /home/luna/code/nixos-configs/hosts/common/options.nix
+
+      ./git.nix
+
       /home/luna/code/nixos-configs/users
       /home/luna/code/nixos-configs/hosts/common/core.nix
       /home/luna/code/nixos-configs/hosts/common/desktop.nix
@@ -19,7 +23,7 @@
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_15;
+  boot.kernelPackages = pkgs.linuxPackages_5_17;
 
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
@@ -128,6 +132,7 @@
 
   # Virtualbox
   # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "luna" ];
   # Disable extensions for now.
   # virtualisation.virtualbox.host.enableExtensionPack = true;
 
