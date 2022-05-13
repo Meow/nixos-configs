@@ -6,5 +6,10 @@
     userEmail = "luna@nighty.cloud";
     signing.key = nixosConfig.gitOpts.gpgKeyId;
     signing.signByDefault = nixosConfig.gitOpts.gpgSignCommits;
+    extraConfig = {
+      core = {
+        editor = "nano";
+      };
+    };
   };
 }
