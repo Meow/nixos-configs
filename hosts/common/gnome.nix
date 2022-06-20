@@ -8,7 +8,7 @@
       desktopManager.gnome.enable = true;
     };
 
-    dbus.packages = [ pkgs.gnome.dconf ];
+    dbus.packages = [ pkgs.dconf ];
     udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
   };
 }

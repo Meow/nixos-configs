@@ -23,7 +23,7 @@
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_17;
+  boot.kernelPackages = pkgs.linuxPackages_5_18;
 
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
@@ -96,7 +96,12 @@
   networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
+  services.printing.drivers = with pkgs; [
+    gutenprint
+    gutenprintBin
+    epson-escpr2
+  ];
 
   # Enable sound.
   sound.enable = true;
@@ -106,6 +111,7 @@
   hardware.bluetooth.enable = true;
 
   # Steam is a pancake
+  hardware.opengl.setLdLibraryPath = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.steam-hardware.enable = true;

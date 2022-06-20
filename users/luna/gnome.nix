@@ -7,7 +7,7 @@
     gnome.evince # pdf reader
 
     # desktop look & feel
-    gnome.gnome-tweak-tool
+    gnome.gnome-tweaks
 
     # extensions
     gnomeExtensions.appindicator
