@@ -23,7 +23,7 @@
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_18;
+  boot.kernelPackages = pkgs.linuxPackages_6_0;
 
   boot.kernelParams = [ "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
 
@@ -45,6 +45,8 @@
   networking.extraHosts = ''
     192.168.200.200 ldap.hc.schule
     192.168.200.200 docs.hc.schule
+    192.168.200.200 hc.schule
+    192.168.200.200 old.hc.schule
   '';
 
   # Set your time zone.
@@ -53,8 +55,8 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.eno1.useDHCP = true;
+  #networking.useDHCP = false;
+  #networking.interfaces.eno1.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
