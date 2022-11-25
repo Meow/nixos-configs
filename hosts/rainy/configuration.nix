@@ -17,15 +17,15 @@
       /home/luna/code/nixos-configs/hosts/common/wacom.nix
       /home/luna/code/nixos-configs/hosts/common/wine.nix
       /home/luna/code/nixos-configs/hosts/common/gnome.nix
-      /home/luna/code/nixos-configs/hosts/common/postgresql.nix
+      /home/luna/code/nixos-configs/hosts/common/android.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_18;
+  boot.kernelPackages = pkgs.linuxPackages_6_0;
 
-  boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "nospectre_v1" "nospectre_v2" "spectre_v2_user=off" "l1tf=off" "mds=off" "nospec_store_bypass_disable" "no_stf_barrier" "mitigations=off" ];
+  boot.kernelParams = [ "iommu=pt" ];
 
   boot.initrd.luks.devices = {
     root = {
@@ -48,7 +48,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp7s0.useDHCP = true;
+  networking.interfaces.enp15s0.useDHCP = true;
   #networking.interfaces.enp9s0.useDHCP = true;
   #networking.interfaces.wlp7s0.useDHCP = true;
 

@@ -9,7 +9,7 @@
     shell = pkgs.fish;
   };
 
-  users.extraGroups.vboxusers.members = [ "luna" ];
+  users.extraGroups.vboxusers.members = [ "luna" "adbusers" ];
 
   home-manager.users.luna = (import ./luna/default.nix);
 }
