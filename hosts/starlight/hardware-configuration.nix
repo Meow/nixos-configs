@@ -24,11 +24,6 @@
       options = [ "bind" ];
     };
 
-  fileSystems."/mnt/it" =
-    { device = "systemd-1";
-      fsType = "autofs";
-    };
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/DCFE-A9AE";
       fsType = "vfat";
