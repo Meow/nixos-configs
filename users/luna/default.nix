@@ -17,6 +17,8 @@ in
     ./blender.nix
   ];
 
+  home.stateVersion = "22.11";
+
   home.packages = with pkgs; [
     unstable.discord
     tdesktop
