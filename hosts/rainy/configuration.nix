@@ -17,6 +17,7 @@
       /home/luna/code/nixos-configs/hosts/common/wacom.nix
       /home/luna/code/nixos-configs/hosts/common/wine.nix
       /home/luna/code/nixos-configs/hosts/common/gnome.nix
+      /home/luna/code/nixos-configs/hosts/common/virtualization.nix
       /home/luna/code/nixos-configs/hosts/common/android.nix
     ];
 
@@ -132,15 +133,9 @@
   services.xserver.desktopManager.plasma5.enable = false;
 
   # Docker
-  virtualisation.docker.enable = true;
-  virtualisation.libvirtd.enable = true;
   networking.firewall.checkReversePath = false;
 
-  # Virtualbox
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "luna" ];
-  # Disable extensions for now.
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  powerManagement.cpuFreqGovernor = "performance";
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
