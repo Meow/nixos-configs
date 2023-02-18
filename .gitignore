@@ -1,3 +1,5 @@
 result
 result/
 .vscode/
+hosts/common/wireguard.nix
+*.old

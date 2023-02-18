@@ -19,28 +19,30 @@
       /home/luna/code/nixos-configs/hosts/common/gnome.nix
       /home/luna/code/nixos-configs/hosts/common/virtualization.nix
       /home/luna/code/nixos-configs/hosts/common/android.nix
+#      /home/luna/code/nixos-configs/hosts/common/wireguard.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_0;
+  boot.kernelPackages = pkgs.linuxPackages_6_1;
 
   boot.kernelParams = [ "iommu=pt" ];
 
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/disk/by-uuid/77636ca8-422b-4435-b5a9-ad85b0957f4f";
-      preLVM = true;
-      allowDiscards = true;
-    };
-  };
+#  boot.initrd.luks.devices = {
+#    root = {
+#      device = "/dev/disk/by-uuid/77636ca8-422b-4435-b5a9-ad85b0957f4f";
+#      preLVM = true;
+#      allowDiscards = true;
+#    };
+#  };
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "rainy"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

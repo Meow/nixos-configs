@@ -14,23 +14,21 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ef3f0962-af42-4a0b-9bfb-4018cd32d1d3";
+    { device = "/dev/disk/by-uuid/4b3122f8-e9a8-4100-ac7e-c46d42a27a53";
       fsType = "ext4";
     };
 
-  fileSystems."/nix/store" =
-    { device = "/nix/store";
-      fsType = "none";
-      options = [ "bind" ];
-    };
+  boot.initrd.luks.devices."luks-97d00332-5a63-46ce-b3a6-0efba72802da".device = "/dev/disk/by-uuid/97d00332-5a63-46ce-b3a6-0efba72802da";
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/C292-8F3B";
+  boot.initrd.luks.devices."luks-44afcf2b-25d9-4162-8410-034f671b4380".device = "/dev/disk/by-uuid/44afcf2b-25d9-4162-8410-034f671b4380";
+
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/2E40-06CC";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/f45456dd-f583-48c1-b099-529afcaf6e0a"; }
+    [ { device = "/dev/disk/by-uuid/4b9fec02-15c3-4d45-89eb-32c0cacf3c40"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -38,11 +36,10 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp15s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp16s0.useDHCP = lib.mkDefault true;
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
