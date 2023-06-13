@@ -12,7 +12,6 @@ in
     ./vscode.nix
     ./git.nix
     ./gnome.nix
-    ./kitty.nix
     ./krita.nix
     ./blender.nix
   ];
@@ -24,7 +23,6 @@ in
     tdesktop
     slack
     thunderbird
-    teams
     protonmail-bridge
     htop
     tmux

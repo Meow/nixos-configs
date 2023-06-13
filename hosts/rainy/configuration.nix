@@ -2,13 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  baseconfig = { allowUnfree = true; };
+  unstable = import <nixos-unstable> { config = baseconfig; };
+in {
   imports =
     [
       ./hardware-configuration.nix
       /home/luna/code/nixos-configs/hosts/common/options.nix
 
       ./git.nix
+      ./samba.nix
+      ./tailscale.nix
 
       /home/luna/code/nixos-configs/users
       /home/luna/code/nixos-configs/hosts/common/core.nix
@@ -23,9 +29,10 @@
     ];
 
   nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_1;
+  boot.kernelPackages = unstable.linuxPackages_6_1;
 
   boot.kernelParams = [ "iommu=pt" ];
 
@@ -37,7 +44,7 @@
 #    };
 #  };
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
+# boot.initrd.kernelModules = [ "amdgpu" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -51,7 +58,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp15s0.useDHCP = true;
+  networking.interfaces.enp13s0.useDHCP = true;
   #networking.interfaces.enp9s0.useDHCP = true;
   #networking.interfaces.wlp7s0.useDHCP = true;
 
@@ -114,9 +121,15 @@
   hardware.bluetooth.enable = true;
 
   # Steam is a pancake
+  hardware.opengl.enable = true;
   hardware.opengl.setLdLibraryPath = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages = [
+    unstable.vaapiVdpau
+    unstable.libvdpau-va-gl
+#    unstable.nvidia-vaapi-driver
+  ];
   hardware.steam-hardware.enable = true;
 
   # AMD stuff
@@ -139,7 +152,10 @@
 
   powerManagement.cpuFreqGovernor = "performance";
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.package = unstable.linuxPackages_6_1.nvidiaPackages.latest; #config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.open = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
