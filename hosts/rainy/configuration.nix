@@ -32,7 +32,7 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = unstable.linuxPackages_6_1;
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
 
   boot.kernelParams = [ "iommu=pt" ];
 
@@ -53,6 +53,10 @@ in {
 
   networking.hostName = "rainy"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  networking.extraHosts = ''
+    100.64.0.2 cloud.hc.schule
+  '';
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -114,20 +118,28 @@ in {
   ];
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  #sound.enable = true;
+  #hardware.pulseaudio.enable = true;
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # Bluetooth for Bluetooth things
   hardware.bluetooth.enable = true;
 
   # Steam is a pancake
   hardware.opengl.enable = true;
-  hardware.opengl.setLdLibraryPath = true;
-  hardware.opengl.driSupport = true;
+  #hardware.opengl.setLdLibraryPath = true;
+  #hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages = [
-    unstable.vaapiVdpau
-    unstable.libvdpau-va-gl
+    pkgs.vaapiVdpau
+    pkgs.libvdpau-va-gl
 #    unstable.nvidia-vaapi-driver
   ];
   hardware.steam-hardware.enable = true;
@@ -135,9 +147,18 @@ in {
   # AMD stuff
   hardware.enableRedistributableFirmware = true;
 
+  # Wooting keyboard support
+  hardware.wooting.enable = true;
+
+  # 80HE
+  services.udev.extraRules = ''
+    SUBSYSTEM=="hidraw", ATTRS{idVendor}=="31e3", TAG+="uaccess"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="31e3", TAG+="uaccess"
+  '';
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "us";
+  services.xserver.xkb.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
@@ -150,12 +171,19 @@ in {
   # Docker
   networking.firewall.checkReversePath = false;
 
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  };
+
   powerManagement.cpuFreqGovernor = "performance";
 
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.package = unstable.linuxPackages_6_1.nvidiaPackages.latest; #config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.package = pkgs.linuxPackages_6_6.nvidiaPackages.latest; #config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
+  hardware.nvidia-container-toolkit.enable = true;
+# hardware.nvidia.powerManagement.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

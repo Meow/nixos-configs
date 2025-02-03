@@ -16,6 +16,10 @@ in
     ./blender.nix
   ];
 
+  manual.html.enable = false;
+  manual.manpages.enable = false;
+  manual.json.enable = false;
+
   home.stateVersion = "22.11";
 
   home.packages = with pkgs; [
